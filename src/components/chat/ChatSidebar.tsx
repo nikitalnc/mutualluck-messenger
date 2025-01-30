@@ -9,14 +9,16 @@ export const ChatSidebar = () => {
   return (
     <div className="w-80 border-r border-neutral-light bg-white/50 backdrop-blur-sm p-4">
       <div className="flex items-center space-x-2 mb-6">
-        <Input
-          type="text"
-          placeholder="Search users..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="flex-1"
-          prefix={<Search className="w-4 h-4 text-neutral" />}
-        />
+        <div className="relative w-full">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-neutral" />
+          <Input
+            type="text"
+            placeholder="Search users..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
       </div>
       
       <div className="space-y-2">
