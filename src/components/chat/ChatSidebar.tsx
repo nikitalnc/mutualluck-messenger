@@ -3,7 +3,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, MessageCircle, User } from "lucide-react";
 
-export const ChatSidebar = () => {
+interface ChatSidebarProps {
+  onUserSelect: (userId: string | null) => void;
+}
+
+export const ChatSidebar = ({ onUserSelect }: ChatSidebarProps) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
