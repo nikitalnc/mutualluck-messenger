@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, MessageCircle, User } from "lucide-react";
+import { Search, MessageCircle, User, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
 
 interface ChatSidebarProps {
   onUserSelect: (userId: string | null) => void;
@@ -9,6 +11,17 @@ interface ChatSidebarProps {
 
 export const ChatSidebar = ({ onUserSelect }: ChatSidebarProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleLogout = () => {
+    // TODO: Add actual logout logic here (clear session, tokens, etc.)
+    toast({
+      title: "Logged out",
+      description: "You have been successfully logged out.",
+    });
+    navigate("/login");
+  };
 
   return (
     <div className="w-80 border-r border-neutral-light bg-white/50 backdrop-blur-sm p-4">
@@ -39,6 +52,14 @@ export const ChatSidebar = ({ onUserSelect }: ChatSidebarProps) => {
         >
           <User className="w-4 h-4" />
           <span>Profile</span>
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={handleLogout}
+          className="w-full justify-start space-x-2 text-red-600 hover:text-red-700 hover:bg-red-50"
+        >
+          <LogOut className="w-4 h-4" />
+          <span>Logout</span>
         </Button>
       </div>
 
